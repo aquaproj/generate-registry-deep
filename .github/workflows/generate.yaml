@@ -34,5 +34,7 @@ jobs:
 
           ${BACKTICKS}yaml
           EOS
+        env:
+          GITHUB_TOKEN: ${{github.token}}
       - run: cat "pkgs/$PKG/pkg.yaml" >> "$GITHUB_OUTPUT"
       - run: echo "$BACKTICKS" >> "$GITHUB_OUTPUT"
