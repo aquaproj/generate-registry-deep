@@ -21,7 +21,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{github.token}}
       - run: |
-          cat << EOS >> "$GITHUB_OUTPUT"
+          cat << EOS >> "$GITHUB_STEP_SUMMARY"
           Package: $PKG
 
           registry.yaml
@@ -36,5 +36,5 @@ jobs:
           EOS
         env:
           GITHUB_TOKEN: ${{github.token}}
-      - run: cat "pkg.yaml" >> "$GITHUB_OUTPUT"
-      - run: echo "$BACKTICKS" >> "$GITHUB_OUTPUT"
+      - run: cat "pkg.yaml" >> "$GITHUB_STEP_SUMMARY"
+      - run: echo "$BACKTICKS" >> "$GITHUB_STEP_SUMMARY"
