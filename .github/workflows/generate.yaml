@@ -20,19 +20,22 @@ jobs:
           aqua_version: v1.34.0-2
         env:
           GITHUB_TOKEN: ${{github.token}}
+      - run: aqua gr --deep --out-testdata pkg.yaml "$PKG" | tee registry.yaml
+        env:
+          GITHUB_TOKEN: ${{github.token}}
       - run: |
-          cat << EOS >> "$GITHUB_OUTPUT"
+          cat << EOS >> "$GITHUB_STEP_SUMMARY"
           Package: $PKG
 
           registry.yaml
 
           ${BACKTICKS}yaml
-          $(aqua-registry scaffold --deep "$PKG")
+          $(cat registry.yaml)
           $BACKTICKS
 
           pkg.yaml
 
           ${BACKTICKS}yaml
+          $(cat pkg.yaml)
+          $BACKTICKS
           EOS
-      - run: cat "pkgs/$PKG/pkg.yaml" >> "$GITHUB_OUTPUT"
-      - run: echo "$BACKTICKS" >> "$GITHUB_OUTPUT"

@@ -1,36 +1,6 @@
 {
   "checksums": [
     {
-      "id": "github_release/github.com/aquaproj/registry-tool/v0.1.8-1/registry-tool_darwin_amd64.tar.gz",
-      "checksum": "AC3DE03F210C0B61F9BB7699D7C8EC4AA98CEF7EE609DA0E72B250569EE470CA",
-      "algorithm": "sha256"
-    },
-    {
-      "id": "github_release/github.com/aquaproj/registry-tool/v0.1.8-1/registry-tool_darwin_arm64.tar.gz",
-      "checksum": "D5B0D43BDC196A1D1F38235A52E1BFBFA8EB8626BB16709E67683603A5374A7D",
-      "algorithm": "sha256"
-    },
-    {
-      "id": "github_release/github.com/aquaproj/registry-tool/v0.1.8-1/registry-tool_linux_amd64.tar.gz",
-      "checksum": "BE0F03739F9D9624058BA86DD823A5E48A5F9B593111E8A9C38C5A8EFD33787E",
-      "algorithm": "sha256"
-    },
-    {
-      "id": "github_release/github.com/aquaproj/registry-tool/v0.1.8-1/registry-tool_linux_arm64.tar.gz",
-      "checksum": "EF159826D39A7E24398451CE951C0DDE6856C94D7999458D46F34770EEADF2A3",
-      "algorithm": "sha256"
-    },
-    {
-      "id": "github_release/github.com/aquaproj/registry-tool/v0.1.8-1/registry-tool_windows_amd64.tar.gz",
-      "checksum": "894BFE8EA097946E34AF833543FC710BF44B7FB1F7187382A8726E4D3EDB9D2F",
-      "algorithm": "sha256"
-    },
-    {
-      "id": "github_release/github.com/aquaproj/registry-tool/v0.1.8-1/registry-tool_windows_arm64.tar.gz",
-      "checksum": "79E3C0B93E59FA394DB55B40FE407A6AFCC17EFB4D703B7B1812206B96F7D2F9",
-      "algorithm": "sha256"
-    },
-    {
       "id": "github_release/github.com/int128/ghcp/v1.13.2/ghcp_darwin_amd64.zip",
       "checksum": "8221F411AC4F2465B7CFD31EFB6DA4568E5FD20BAD9F66AC312B23AFA4520FDD",
       "algorithm": "sha256"

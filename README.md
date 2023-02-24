@@ -12,7 +12,7 @@ https://docs.github.com/en/rest/overview/resources-in-the-rest-api?apiVersion=20
 
 ## How to use
 
-Run GitHub Actions Workflow.
+[Run the GitHub Actions Workflow](https://github.com/aquaproj/generate-registry-deep/actions/workflows/generate.yaml).
 
 e.g.
 
