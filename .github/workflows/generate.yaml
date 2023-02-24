@@ -27,7 +27,7 @@ jobs:
           registry.yaml
 
           ${BACKTICKS}yaml
-          $(aqua-registry scaffold --deep "$PKG")
+          $(aqua gr --deep --out-testdata pkg.yaml "$PKG")
           $BACKTICKS
 
           pkg.yaml
@@ -36,5 +36,5 @@ jobs:
           EOS
         env:
           GITHUB_TOKEN: ${{github.token}}
-      - run: cat "pkgs/$PKG/pkg.yaml" >> "$GITHUB_OUTPUT"
+      - run: cat "pkg.yaml" >> "$GITHUB_OUTPUT"
       - run: echo "$BACKTICKS" >> "$GITHUB_OUTPUT"
