@@ -29,6 +29,11 @@ https://github.com/aquaproj/generate-registry-deep/actions/runs/4260470293
 
 ![image](https://user-images.githubusercontent.com/13323303/221124854-3e9f25cb-34fa-4f9b-acee-8386d1a6334a.png)
 
+### :rocket: Fork this repository
+
+If you want to run the workflow, please [fork this repository](https://github.com/aquaproj/generate-registry-deep/fork) and run the workflow!
+No GitHub Secrets or something are needed. You only have to fork this repository.
+
 ## Reference
 
 - [aquaproj/aqua#1662](https://github.com/aquaproj/aqua/pull/1662)
