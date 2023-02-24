@@ -20,6 +20,15 @@ e.g.
 $ gh workflow run generate.yaml -f package=suzuki-shunsuke/tfcmt [-r <branch>]
 ```
 
+Then the result would be outputted to GITHUB_STEP_SUMMARY.
+Please see the summary.
+
+e.g.
+
+https://github.com/aquaproj/generate-registry-deep/actions/runs/4260470293
+
+![image](https://user-images.githubusercontent.com/13323303/221124854-3e9f25cb-34fa-4f9b-acee-8386d1a6334a.png)
+
 ## Reference
 
 - [aquaproj/aqua#1662](https://github.com/aquaproj/aqua/pull/1662)
