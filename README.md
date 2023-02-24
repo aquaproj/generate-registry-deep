@@ -14,6 +14,12 @@ https://docs.github.com/en/rest/overview/resources-in-the-rest-api?apiVersion=20
 
 Run GitHub Actions Workflow.
 
+e.g.
+
+```console
+$ gh workflow run generate.yaml -f package=suzuki-shunsuke/tfcmt [-r <branch>]
+```
+
 ## Reference
 
 - [aquaproj/aqua#1662](https://github.com/aquaproj/aqua/pull/1662)
