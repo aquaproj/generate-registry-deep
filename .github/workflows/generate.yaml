@@ -39,5 +39,3 @@ jobs:
           $(cat pkg.yaml)
           $BACKTICKS
           EOS
-        env:
-          GITHUB_TOKEN: ${{github.token}}
