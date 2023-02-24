@@ -3,16 +3,11 @@ name: test
 permissions: {}
 on: pull_request
 
-env:
-  AQUA_POLICY_CONFIG: ${{ github.workspace }}/aqua/policy.yaml
-
 jobs:
   path-filter:
     # Get changed files to filter jobs
     outputs:
-      update-aqua-checksums: ${{steps.changes.outputs.update-aqua-checksums}}
       renovate-config-validator: ${{steps.changes.outputs.renovate-config-validator}}
-      ghalint: ${{steps.changes.outputs.ghalint}}
     runs-on: ubuntu-latest
     permissions: {}
     steps:
@@ -20,25 +15,15 @@ jobs:
         id: changes
         with:
           filters: |
-            update-aqua-checksums:
-              - aqua/aqua.yaml
-              - aqua/imports/*.yaml
-              - aqua/aqua-checksums.json
-              - .github/workflows/test.yaml
             renovate-config-validator:
               - renovate.json5
-            ghalint:
-              - .github/workflows/*.yaml
-              - aqua/imports/ghalint.yaml
 
   status-check:
     # This job is used for main branch's branch protection rule's status check.
     # If all dependent jobs succeed or are skipped this job succeeds.
     runs-on: ubuntu-latest
     needs:
-      - update-aqua-checksums
       - renovate-config-validator
-      - ghalint
     permissions: {}
     if: failure()
     steps:
@@ -53,32 +38,14 @@ jobs:
     runs-on: ubuntu-latest
     # "! failure() && ! cancelled()" is required. success() returns false if dependent jobs are skipped. https://github.com/community/community/discussions/45058
     # By default success() is used so we have to override success() by "! failure() && ! cancelled()"
+    permissions:
+      pull-requests: write # To enable auto-merge
+      contents: write # To enable auto-merge
     steps:
-      - name: Generate token
-        id: generate_token
-        uses: tibdex/github-app-token@021a2405c7f990db57f5eae5397423dcc554159c # v1
-        with:
-          app_id: ${{secrets.APP_ID}}
-          private_key: ${{secrets.APP_PRIVATE_KEY}}
       - run: gh -R "$GITHUB_REPOSITORY" pr merge --merge --auto --delete-branch "$PR_NUMBER"
         env:
-          GITHUB_TOKEN: ${{steps.generate_token.outputs.token}} # Use GitHub App to trigger GitHub Actions Workflow by merge commit.
+          GITHUB_TOKEN: ${{github.token}}
           PR_NUMBER: ${{github.event.pull_request.number}}
-
-  update-aqua-checksums:
-    # Update aqua-checksums.json and push a commit
-    needs: path-filter
-    if: needs.path-filter.outputs.update-aqua-checksums == 'true'
-    uses: aquaproj/update-checksum-workflow/.github/workflows/update-checksum.yaml@0ff0064b95b335a8ed93a36664e491d514c75df0 # v0.1.2
-    permissions:
-      contents: read
-    with:
-      aqua_policy_config: aqua/policy.yaml
-      aqua_version: v1.33.0
-      prune: true
-    secrets:
-      gh_app_id: ${{secrets.APP_ID}}
-      gh_app_private_key: ${{secrets.APP_PRIVATE_KEY}}
 
   renovate-config-validator:
     # Validate Renovate Configuration by renovate-config-validator.
@@ -87,20 +54,3 @@ jobs:
     if: needs.path-filter.outputs.renovate-config-validator == 'true'
     permissions:
       contents: read
-
-  ghalint:
-    # Validate GitHub Actions Workflows by ghalint.
-    needs: path-filter
-    if: needs.path-filter.outputs.ghalint == 'true'
-    runs-on: ubuntu-latest
-    permissions: {}
-    steps:
-      - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3
-      - uses: aquaproj/aqua-installer@61e2563dfe7674cbf74fe6ec212e444198a3bb00 # v2.0.2
-        with:
-          aqua_version: v1.33.0
-        env:
-          AQUA_GITHUB_TOKEN: ${{github.token}}
-      - run: ghalint run
-        env:
-          GHALINT_LOG_COLOR: always
