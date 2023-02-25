@@ -25,9 +25,62 @@ Please see the summary.
 
 e.g.
 
-https://github.com/aquaproj/generate-registry-deep/actions/runs/4260470293
+https://github.com/aquaproj/generate-registry-deep/actions/runs/4263618160
 
-![image](https://user-images.githubusercontent.com/13323303/221124854-3e9f25cb-34fa-4f9b-acee-8386d1a6334a.png)
+registry.yaml
+
+```yaml
+packages:
+  - type: github_release
+    repo_owner: cloudspannerecosystem
+    repo_name: wrench
+    description: wrench - Schema management tool for Cloud Spanner -
+    asset: wrench_{{trimV .Version}}_{{.OS}}_{{.Arch}}.tar.gz
+    checksum:
+      type: github_release
+      asset: wrench_{{trimV .Version}}_checksums.txt
+      file_format: regexp
+      algorithm: sha256
+      pattern:
+        checksum: "^(\\b[A-Fa-f0-9]{64}\\b)"
+        file: "^\\b[A-Fa-f0-9]{64}\\b\\s+(\\S+)$"
+    version_constraint: semver(">= 1.3.3")
+    version_overrides:
+      - version_constraint: semver(">= 1.3.0")
+        supported_envs:
+          - linux
+          - darwin
+      - version_constraint: semver(">= 1.1.0")
+        asset: wrench_{{.OS}}_{{.Arch}}
+        format: raw
+        supported_envs:
+          - linux
+          - darwin
+        checksum:
+          enabled: false
+      - version_constraint: semver("< 1.1.0")
+        asset: wrench_{{.OS}}_{{.Arch}}
+        format: raw
+        supported_envs:
+          - linux/amd64
+          - darwin
+        rosetta2: true
+        checksum:
+          enabled: false
+```
+
+testdata
+
+```yaml
+packages:
+  - name: cloudspannerecosystem/wrench@v1.3.3
+  - name: cloudspannerecosystem/wrench
+    version: v1.3.0
+  - name: cloudspannerecosystem/wrench
+    version: v1.1.0
+  - name: cloudspannerecosystem/wrench
+    version: v1.0.0
+```
 
 ### :rocket: Fork this repository
 
