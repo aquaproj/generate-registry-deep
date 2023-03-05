@@ -13,6 +13,7 @@ defaults:
 jobs:
   generate:
     runs-on: ubuntu-latest
+    run-name: generate (${{inputs.package}})
     env:
       PKG: ${{inputs.package}}
       BACKTICKS: "```"
