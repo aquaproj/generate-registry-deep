@@ -1,5 +1,6 @@
 ---
 name: Generate Registry
+run-name: Generate Registry (${{inputs.package}})
 on:
   workflow_dispatch:
     inputs:
@@ -13,7 +14,6 @@ defaults:
 jobs:
   generate:
     runs-on: ubuntu-latest
-    run-name: generate (${{inputs.package}})
     env:
       PKG: ${{inputs.package}}
       BACKTICKS: "```"
