@@ -1,5 +1,6 @@
 ---
 name: Generate Registry
+run-name: Generate Registry (${{inputs.package}})
 on:
   workflow_dispatch:
     inputs:
