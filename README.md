@@ -90,7 +90,7 @@ No GitHub Secrets or something are needed. You only have to fork this repository
 ## Reference
 
 - [aquaproj/aqua#1662](https://github.com/aquaproj/aqua/pull/1662)
-- https://aquaproj.github.io/docs/reference/scaffold-registry/#generate-version_overrides-by---deep-option
+- https://aquaproj.github.io/docs/develop-registry/scaffold-registry#generate-version_overrides-by---deep-option
 
 ## LICENSE
 
